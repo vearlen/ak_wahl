@@ -82,9 +82,9 @@ dw_create_chart(title="Turnout no interpolation",type='d3-lines')
 
 # no interpolation
 dw_data_to_chart(select(df_turn,year_label,Parlament,AK,`Change in AK voters`),chart_id = 'bYhOq' ) 
-dw_edit_chart('bYhOq',title="Turnout",source_name = "AK, author calculations",
+dw_edit_chart('bYhOq',source_name = "AK, author calculations",
               source_url = 'https://vearlen.github.io/ak_wahl/',
-              byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
 
 # interpolated chart
 # dw_data_to_chart(df_turn,chart_id = '7A2ow' )
@@ -124,7 +124,7 @@ df_comparison <- full_join(tmp1,tmp2) %>% arrange(year) %>%
 dw_data_to_chart(df_comparison,chart_id = 'xoCr1')
 dw_edit_chart('xoCr1',source_name = "AK, author calculations",
               source_url = 'https://vearlen.github.io/ak_wahl/',
-              byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
 
 
 # dw_create_chart(title="Comparison of parties results",type='d3-lines')
@@ -133,7 +133,7 @@ df_comp_fill <- fill_(df_comparison,names(df_comparison))
 dw_data_to_chart(df_comp_fill,chart_id = 'tl1Cf')
 dw_edit_chart('tl1Cf',source_name = "AK, author calculations",
               source_url = 'https://vearlen.github.io/ak_wahl/',
-              byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
 
 
 # data for map ------------------------------------------------------------
@@ -150,4 +150,10 @@ df2014_win <- df %>%
 dw_data_to_chart(df2014_win,chart_id = "q3GUV")
 dw_edit_chart('q3GUV',intro="", source_name = "AK, author calculations",
               source_url = 'https://vearlen.github.io/ak_wahl/',
-              byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
+
+
+df_nationalrat %>% 
+  # filter(grepl('1999',Wahl)) %>% 
+  View()
+
