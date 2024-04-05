@@ -9,3 +9,5 @@ data/*
 AK_Wahl.Rproj
 token
 token.R
+
+/.quarto/

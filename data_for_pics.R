@@ -21,7 +21,7 @@ library(DatawRappr)
 
 # import data -------------------------------------------------------------
 df <- read.csv('data/AK_Wahl_49_19.csv')
-
+# https://www.wahldatenbank.at/#dbst_head
 df_nationalrat <- read_delim(
   "data/nationalratwahl.csv",
   delim = ";",
@@ -89,14 +89,41 @@ dw_edit_chart('bYhOq',title="Turnout",
 
 # data compare parties ----------------------------------------------------
 
-df %>% 
+tmp1 <- df %>% 
   filter(Label %in% c("FSG","ÖAAB","FA"),Land == "Gesamt") %>% 
   select(Jahr,Label,ratio) %>% 
-  View()
+  mutate(Label = case_when(
+    Label == "FSG" ~ "SPOE AK",
+    Label == "ÖAAB" ~ "OEVP AK",
+    Label == "FA" ~ "FPOE AK"
+  )) %>% 
+  pivot_wider(id_cols = Jahr,names_from = Label,values_from = ratio) %>% 
+  rename(year=Jahr)
 
-df_nationalrat %>% 
-  select(FPOE_ratio,SPOE_ratio,OEVP_ratio,Wahl) %>% 
+tmp2 <- df_nationalrat %>% 
+  select(`FPOE Prlm` = FPOE_ratio,`SPOE Prlm` = SPOE_ratio,`OEVP Prlm` = OEVP_ratio,Wahl) %>% 
   separate(Wahl,into = c("day","month","year")) %>% 
+  mutate_if(is.numeric,~100*.) %>% 
+  
   mutate(year = as.integer(year)) %>% 
-  select(-c(day,month)) %>% 
-  View()
+  select(-c(day,month)) 
+
+df_comparison <- full_join(tmp1,tmp2) %>% arrange(year) %>% 
+  mutate_if(is.numeric,round,0) %>% 
+  select(year,"SPOE Prlm","SPOE AK","OEVP Prlm","OEVP AK","FPOE Prlm","FPOE AK")
+
+
+# create comparison chart -------------------------------------------------
+# table
+# dw_create_chart(title="Comparison of parties results",type='d3-lines')
+dw_data_to_chart(df_comparison,chart_id = 'xoCr1')
+dw_edit_chart('xoCr1',
+              byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
+
+
+# dw_create_chart(title="Comparison of parties results",type='d3-lines')
+df_comp_fill <- fill_(df_comparison,names(df_comparison))
+
+dw_data_to_chart(df_comp_fill,chart_id = 'tl1Cf')
+dw_edit_chart('tl1Cf',
+              byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')

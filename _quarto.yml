@@ -1,0 +1,19 @@
+project:
+  type: website
+  output-dir: docs
+
+  
+website:
+  title: "The Chamber of Labour elections | AK Wahl"
+  
+format:
+  html:
+    theme: flatly
+    css: styles.css
+    toc: false
+    fontsize: 1.2em
+    mainfont: NotoSerif, serif;
+    linkcolor: '#006a9c'
+    fontcolor: '#444'
+editor: visual
+

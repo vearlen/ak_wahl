@@ -1,0 +1,19 @@
+---
+title: "The Chamber of Labour elections | AK Wahl"
+navbar: false
+execute:
+  echo: false 
+  warning: false
+subtitle: ""
+fig-responsive: false
+format:
+  html:
+    page-layout: full 
+editor_options: 
+  chunk_output_type: console
+---
+
+```{=html}
+<span style="font-size:0.9em;">Author: <a href="https://t.me/vearlen">Ilya Tishchenko</a></span><br>
+```
+
