@@ -2,8 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
-/data
+/data*
+!data/AK_Wahl_49_19.csv
 /papers
 .DS_Store
 AK_Wahl.Rproj
-!data/AK_Wahl_49_19.csv
