@@ -42,14 +42,16 @@ Without digging into the data further who do you think most common winner for su
 <iframe title="Comparison of parties results" aria-label="Interactive line chart" id="datawrapper-chart-tl1Cf" src="https://datawrapper.dwcdn.net/tl1Cf/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="509" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 ```
-As could be seen only socialists (SPÖ[^2]) has a gap downwards, result in parliament always lower than in AK elections. From last elections in 2019 the gap between results in AK (60%) and parliament (21%) is the biggest. For ÖVP the gap sometimes is really small and volatile, starting from 90s. FPÖ gap is growing lately with their increased popularity in parliament.
+As could be seen only socialists (SPÖ[^2]) has a gap downwards, result in parliament always lower than in AK elections. From the last elections in 2019 the gap between results in AK (60%) and parliament (21%) is the biggest. For ÖVP the gap sometimes is really small and volatile, starting from 90s. FPÖ gap is growing lately with their increased popularity in parliament but their representation in AK remain more or less stable.
 
 [^2]: I'll call it SPÖ for simplicity, though in AK elections it's FSG, same applies to other major parties ÖVP, FPÖ
 
-The open, rather ritorical question I have is if everybody elects socialist to protect himself as an employee why people vote for other during parliament elections?
+The open, rather ritorical question I have is if everybody vote for socialist to protect herself as an employee why people vote for other parties during parliament elections?
 
 ```{=html}
 <iframe title="AK elections results in 2014" aria-label="Map" id="datawrapper-chart-q3GUV" src="https://datawrapper.dwcdn.net/q3GUV/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="456" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 ```
+Maps of voting are boring, so I might come up with something else or remove it completely, it's place holder for now.
+
 Data available in repository [github.com/vearlen/ak_whal](https://github.com/vearlen/ak_wahl)
