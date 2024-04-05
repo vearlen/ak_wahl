@@ -8,7 +8,7 @@ subtitle: ""
 fig-responsive: false
 format:
   html:
-    page-layout: full 
+    page-layout: article 
 editor_options: 
   chunk_output_type: console
 ---
