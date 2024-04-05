@@ -16,8 +16,13 @@ editor_options:
 ```{=html}
 <span style="font-size:0.9em;">Author: <a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a></span><br><br>
 ```
+Austria has 26% of employee in trade union, this is 33rd place in the world, however there is organisation in Austria where all workers are members.
 
-The [Chamber of Labour](https://en.wikipedia.org/wiki/Chamber_for_Workers_and_Employees) (I'll use sometimes later AK abbreviation for [Arbeiterkammer](https://www.arbeiterkammer.at/ueberuns/akerklaertsich/eng/17-Antworten.html)) represents workers in Austria. It is quite a unique organisation without the analogs in other European countries, as written by [Oberhuber et.al., 2014](https://www.ssoar.info/ssoar/bitstream/document/51973/1/ssoar-sws-2014-4-oberhuber_et_al-Arbeiterkammerwahlen_in_Osterreich_1949-2014.pdf). In 2024 there is elections in AK, [various dates in various regions](https://www.arbeiterkammer.at/wahl), in [Tirol](https://tirol.orf.at/stories/3244240/) and [Voralberg](https://vorarlberg.orf.at/stories/3244263/) they are already over. And that is a rare occasion where I, as non-citizen, can vote, so I become curious.
+```{=html}
+<iframe title="Trade Union Density" aria-label="Table" id="datawrapper-chart-m3Nwc" src="https://datawrapper.dwcdn.net/m3Nwc/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="927" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+```
+The [Chamber of Labour](https://en.wikipedia.org/wiki/Chamber_for_Workers_and_Employees) (also known as AK, abbreviation for [Arbeiterkammer](https://www.arbeiterkammer.at/ueberuns/akerklaertsich/eng/17-Antworten.html)) represents workers in Austria. It is quite a unique organisation without the analogs in other European countries, as written by [Oberhuber et.al., 2014](https://www.ssoar.info/ssoar/bitstream/document/51973/1/ssoar-sws-2014-4-oberhuber_et_al-Arbeiterkammerwahlen_in_Osterreich_1949-2014.pdf). In 2024 there is elections in AK, [various dates in various regions](https://www.arbeiterkammer.at/wahl), in [Tirol](https://tirol.orf.at/stories/3244240/) and [Voralberg](https://vorarlberg.orf.at/stories/3244263/) they are already over. And that is a rare occasion where I, as non-citizen, can vote, so I become curious.
 
 I've took and cleaned up [the data](https://www.arbeiterkammer.at/ueberuns/akwahl/AK_Wahlen_1949-2019.pdf "pdf") and build a few graphs to answer the questions I have AK elections. How in general is turnout? Below I compare it to turnout on parliament elections, the latter is quite impressive on it's own.
 
@@ -42,3 +47,9 @@ As could be seen only socialists (SPÖ[^2]) has a gap downwards, result in parli
 [^2]: I'll call it SPÖ for simplicity, though in AK elections it's FSG, same applies to other major parties ÖVP, FPÖ
 
 The open, rather ritorical question I have is if everybody elects socialist to protect himself as an employee why people vote for other during parliament elections?
+
+```{=html}
+<iframe title="AK elections results in 2014" aria-label="Map" id="datawrapper-chart-q3GUV" src="https://datawrapper.dwcdn.net/q3GUV/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="456" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+```
+Data available in repository [github.com/vearlen/ak_whal](https://github.com/vearlen/ak_wahl)
