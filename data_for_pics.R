@@ -98,24 +98,23 @@ tmp1 <- df %>%
   filter(Label %in% c("FSG","ÖAAB","FA"),Land == "Gesamt") %>% 
   select(Jahr,Label,ratio) %>% 
   mutate(Label = case_when(
-    Label == "FSG" ~ "SPOE AK",
-    Label == "ÖAAB" ~ "OEVP AK",
-    Label == "FA" ~ "FPOE AK"
+    Label == "FSG" ~ "SPÖ AK",
+    Label == "ÖAAB" ~ "ÖVP AK",
+    Label == "FA" ~ "FPÖ AK"
   )) %>% 
   pivot_wider(id_cols = Jahr,names_from = Label,values_from = ratio) %>% 
   rename(year=Jahr)
 
 tmp2 <- df_nationalrat %>% 
-  select(`FPOE Prlm` = FPOE_ratio,`SPOE Prlm` = SPOE_ratio,`OEVP Prlm` = OEVP_ratio,Wahl) %>% 
+  select(`FPÖ Prlm` = FPÖ_ratio,`SPÖ Prlm` = SPÖ_ratio,`ÖVP Prlm` = ÖVP_ratio,Wahl) %>% 
   separate(Wahl,into = c("day","month","year")) %>% 
   mutate_if(is.numeric,~100*.) %>% 
-  
   mutate(year = as.integer(year)) %>% 
   select(-c(day,month)) 
 
 df_comparison <- full_join(tmp1,tmp2) %>% arrange(year) %>% 
   mutate_if(is.numeric,round,0) %>% 
-  select(year,"SPOE Prlm","SPOE AK","OEVP Prlm","OEVP AK","FPOE Prlm","FPOE AK")
+  select(year,"SPÖ Prlm","SPÖ AK","ÖVP Prlm","ÖVP AK","FPÖ Prlm","FPÖ AK")
 
 
 # create comparison chart -------------------------------------------------
