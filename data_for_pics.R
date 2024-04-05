@@ -82,7 +82,8 @@ dw_create_chart(title="Turnout no interpolation",type='d3-lines')
 
 # no interpolation
 dw_data_to_chart(select(df_turn,year_label,Parlament,AK,`Change in AK voters`),chart_id = 'bYhOq' ) 
-dw_edit_chart('bYhOq',title="Turnout",
+dw_edit_chart('bYhOq',title="Turnout",source_name = "AK, author calculations",
+              source_url = 'https://vearlen.github.io/ak_wahl/',
               byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
 
 # interpolated chart
@@ -121,7 +122,8 @@ df_comparison <- full_join(tmp1,tmp2) %>% arrange(year) %>%
 # table
 # dw_create_chart(title="Comparison of parties results",type='d3-lines')
 dw_data_to_chart(df_comparison,chart_id = 'xoCr1')
-dw_edit_chart('xoCr1',
+dw_edit_chart('xoCr1',source_name = "AK, author calculations",
+              source_url = 'https://vearlen.github.io/ak_wahl/',
               byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
 
 
@@ -129,5 +131,23 @@ dw_edit_chart('xoCr1',
 df_comp_fill <- fill_(df_comparison,names(df_comparison))
 
 dw_data_to_chart(df_comp_fill,chart_id = 'tl1Cf')
-dw_edit_chart('tl1Cf',
+dw_edit_chart('tl1Cf',source_name = "AK, author calculations",
+              source_url = 'https://vearlen.github.io/ak_wahl/',
+              byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
+
+
+# data for map ------------------------------------------------------------
+
+df2014_win <- df %>% 
+  filter(Jahr == 2014 ) %>% 
+  filter(!Label %in% c("Wahlbeteiligung","Wahlberechtigte","AbgegebeneStimmen",
+                       "UngültigeStimmen","GültigeStimmen")) %>% 
+  filter(ratio > 50) %>% 
+  left_join(ATavailable_keys,by=join_by(Land==Name)) %>% 
+  filter(Land != "Gesamt")
+
+# map chart
+dw_data_to_chart(df2014_win,chart_id = "q3GUV")
+dw_edit_chart('q3GUV',intro="", source_name = "AK, author calculations",
+              source_url = 'https://vearlen.github.io/ak_wahl/',
               byline = '<a href="https://t.me/vearlen">Ilya Tishchenko</a>')
