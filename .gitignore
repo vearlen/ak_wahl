@@ -8,3 +8,4 @@ data/*
 .DS_Store
 AK_Wahl.Rproj
 token
+token.R
