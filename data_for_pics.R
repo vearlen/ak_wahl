@@ -73,7 +73,6 @@ df_turn <- tmp3 %>%
 # turnout graph -----------------------------------------------------------
 # https://munichrocker.github.io/DatawRappr/reference/dw_edit_chart.html
 
-datawrapper_auth(api_key =  "pncOcgv7mTayeGAEKOIp1dekS5hxXn9aBIXTxduuKSwCovxxBAsF1f20zvC0QNF3")
 dw_test_key()
 dw_create_chart(title="Turnout no interpolation",type='d3-lines')
 
