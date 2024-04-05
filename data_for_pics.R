@@ -40,6 +40,10 @@ df_eu <- read_delim(
 
 ATavailable_keys <- read_csv("data/ATavailable-keys.csv")
 
+# http://db.arbeitsklima.at/en
+AKIndex <- read_delim("data/AKI-Overall index-Feb1997-Feb2023.csv",
+                      delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
 # Wahlbeteilung/turnout ---------------------------------------------------
 
 options(scipen = 999)
