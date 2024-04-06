@@ -50,11 +50,8 @@ As could be seen only socialists (SPÖ[^2]) has a gap downwards, result in parli
 <iframe title="Comparison of parties results" aria-label="Interactive line chart" id="datawrapper-chart-gVlhu" src="https://datawrapper.dwcdn.net/gVlhu/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="465" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
 ```
-The open, rather rhetorical question I have is:
+The open, rather rhetorical question I have is the following: **In case everybody vote for socialists to protect herself as an employee why people vote for other parties during parliament elections?**
 
-```{=html}
-<b><big>In case everybody vote for socialists to protect herself as an employee why people vote for other parties during parliament elections?</big></b><br>
-```
 ```{=html}
 <br><iframe title="AK elections results in 2014" aria-label="Map" id="datawrapper-chart-q3GUV" src="https://datawrapper.dwcdn.net/q3GUV/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="456" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
 </script>
