@@ -47,6 +47,44 @@ AKIndex <- read_delim("data/AKI-Overall index-Feb1997-Feb2023.csv",
 
 df_TUD <- read_csv("data/TradeUnionDensity_ILR_TUMT_NOC_RT_A-filtered-2024-04-05.csv")
 
+# data for trade union density --------------------------------------------
+
+df_tud_sel <- df_TUD %>% 
+  select(ref_area.label,time,obs_value,source.label) %>% 
+  left_join(cntr_codes,by=join_by( ref_area.label == Country)) %>% 
+  mutate(Code = case_when(
+    ref_area.label == "Viet Nam" ~ ':vn:',
+    ref_area.label == "Taiwan, China" ~ ':tw:',
+    ref_area.label == "Russian Federation" ~ ':ru:',
+    ref_area.label == "Hong Kong, China" ~ ':hk:',
+    ref_area.label == "Eswatini" ~ ':sz:',
+    ref_area.label == "Occupied Palestinian Territory" ~ ':ps:',
+    ref_area.label == "Moldova, Republic of" ~ ':md:',
+    ref_area.label == "North Macedonia" ~ ':mk:',
+    ref_area.label == "Lao People's Democratic Republic" ~ ':la:',
+    ref_area.label == "Congo, Democratic Republic of the" ~ ':cd:',
+    ref_area.label == "Korea, Republic of" ~ ':kr:',
+    ref_area.label == "Bolivia" ~ ':bo:',
+    ref_area.label == "Czechia" ~ ':cz:',
+    ref_area.label == "United States" ~ ':us:',
+    ref_area.label == "Türkiye" ~ ':tr:',
+    ref_area.label == "Venezuela, Bolivarian Republic of" ~ ':ve:',
+    ref_area.label == "Tanzania, United Republic of" ~ ':tz:',
+    TRUE ~Code
+  )) %>% 
+  mutate(country = paste0(Code,' ',ref_area.label)) %>% 
+  select(-c(ref_area.label,Code)) %>% 
+  # filter(obs_value > 26.24) %>% 
+  select(country,year=time,`%` = obs_value,source = source.label) %>% 
+  arrange(-`%`)
+
+
+
+# dw_create_chart(title = "Trade Union Density",type = 'd3-bars')
+dw_data_to_chart(df_tud_sel,chart_id = 'm3Nwc')
+dw_edit_chart('m3Nwc',intro="", source_name = "ILOSTAT",
+              source_url = 'https://rshiny.ilo.org/dataexplorer41/?lang=en&segment=indicator&id=EAP_2WAP_SEX_AGE_RT_A',
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
 
 # Wahlbeteilung/turnout ---------------------------------------------------
 
@@ -139,6 +177,52 @@ dw_edit_chart('tl1Cf',source_name = "AK, author calculations",
               byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
 
 cntr_codes <- read_csv('data/Country flag lookup table.csv')
+
+# data for comparison parties lately with minor ---------------------------
+df_nationalrat %>% 
+  View()
+
+tmp1 <- df %>% 
+  filter(!is.na(ratio), Land == "Gesamt", Jahr >= 1989,
+         Label != "Wahlbeteiligung") %>% 
+  select(Jahr,Label,ratio) %>% 
+  mutate(Label = case_when(
+    Label == "FSG" ~ "SPÖ AK",
+    Label == "ÖAAB" ~ "ÖVP AK",
+    Label == "FA" ~ "FPÖ AK",
+    Label == "AUGE/UG" ~ "GRÜN AK",
+    Label == "GLB" ~ "KPÖ AK",
+    TRUE ~ Label
+  )) %>% 
+  pivot_wider(id_cols = Jahr, names_from = Label, values_from = ratio) %>% 
+  rename(year=Jahr) 
+
+tmp2 <-
+  df_nationalrat %>% 
+  select(`FPÖ Prlm` = FPÖ_ratio,`SPÖ Prlm` = SPÖ_ratio,`ÖVP Prlm` = ÖVP_ratio,
+        `GRÜN Prlm` = GRÜN_ratio, `KPÖ Prlm` = KPÖ_ratio,  Wahl) %>%
+  separate(Wahl,into = c("day","month","year")) %>% 
+  mutate_if(is.numeric,~100*.) %>% 
+  mutate(year = as.integer(year)) %>% 
+  filter(year >=1989) %>% 
+  select(-c(day,month)) 
+
+df_comp_1989 <- full_join(tmp1,tmp2) %>% arrange(year) %>% 
+  mutate_if(is.numeric,round,0)
+
+df_comp_1989_fill <- fill_(df_comp_1989,names(df_comp_1989))
+
+# create comparison chart from 1989 ---------------------------------------
+# dw_create_chart(title="Comparison of parties results from 1989",type='d3-lines')
+
+
+
+dw_data_to_chart(df_comp_1989_fill,chart_id = 'gVlhu')
+dw_edit_chart('gVlhu',source_name = "AK, author calculations",
+              source_url = 'https://vearlen.github.io/ak_wahl/',
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
+
+
 # data for map ------------------------------------------------------------
 
 df2014_win <- 
@@ -160,41 +244,3 @@ dw_edit_chart('q3GUV',intro="", source_name = "AK, author calculations",
 
 
 
-# data for trade union density --------------------------------------------
-
-df_tud_sel <- df_TUD %>% 
-  select(ref_area.label,time,obs_value,source.label) %>% 
-  left_join(cntr_codes,by=join_by( ref_area.label == Country)) %>% 
-  mutate(Code = case_when(
-    ref_area.label == "Viet Nam" ~ ':vn:',
-    ref_area.label == "Taiwan, China" ~ ':tw:',
-    ref_area.label == "Russian Federation" ~ ':ru:',
-    ref_area.label == "Hong Kong, China" ~ ':hk:',
-    ref_area.label == "Eswatini" ~ ':sz:',
-    ref_area.label == "Occupied Palestinian Territory" ~ ':ps:',
-    ref_area.label == "Moldova, Republic of" ~ ':md:',
-    ref_area.label == "North Macedonia" ~ ':mk:',
-    ref_area.label == "Lao People's Democratic Republic" ~ ':la:',
-    ref_area.label == "Congo, Democratic Republic of the" ~ ':cd:',
-    ref_area.label == "Korea, Republic of" ~ ':kr:',
-    ref_area.label == "Bolivia" ~ ':bo:',
-    ref_area.label == "Czechia" ~ ':cz:',
-    ref_area.label == "United States" ~ ':us:',
-    ref_area.label == "Türkiye" ~ ':tr:',
-    ref_area.label == "Venezuela, Bolivarian Republic of" ~ ':ve:',
-    ref_area.label == "Tanzania, United Republic of" ~ ':tz:',
-    TRUE ~Code
-  )) %>% 
-  mutate(country = paste0(Code,' ',ref_area.label)) %>% 
-  select(-c(ref_area.label,Code)) %>% 
-  # filter(obs_value > 26.24) %>% 
-  select(country,year=time,`%` = obs_value,source = source.label) %>% 
-  arrange(-`%`)
-
-
-
-# dw_create_chart(title = "Trade Union Density",type = 'd3-bars')
-dw_data_to_chart(df_tud_sel,chart_id = 'm3Nwc')
-dw_edit_chart('m3Nwc',intro="", source_name = "ILOSTAT",
-              source_url = 'https://rshiny.ilo.org/dataexplorer41/?lang=en&segment=indicator&id=EAP_2WAP_SEX_AGE_RT_A',
-              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
