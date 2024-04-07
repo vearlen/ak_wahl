@@ -6,6 +6,8 @@ data/*
 !data/AK_Wahl_49_19.csv
 !data/nationalratwahl.csv
 !data/EU.csv
+maps/*
+!maps/AK_map.gif
 /papers
 .DS_Store
 AK_Wahl.Rproj

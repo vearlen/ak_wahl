@@ -242,5 +242,46 @@ dw_edit_chart('q3GUV',intro="", source_name = "AK, author calculations",
               byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
 
 
+# create multiple maps ----------------------------------------------------
+ak_years <- df$Jahr %>% unique()
+ak_years <- ak_years[-16]
+i = ak_years[1]
+for (i in ak_years){
+tmp_map <-
+  df %>% 
+  filter(Jahr == i ) %>%
+  filter(!Label %in% c("Wahlbeteiligung","Wahlberechtigte","AbgegebeneStimmen",
+                       "UngültigeStimmen","GültigeStimmen")) %>% 
+  group_by(Land) %>% 
+  top_n(1,ratio) %>% 
+  left_join(ATavailable_keys,by=join_by(Land==Name)) %>% 
+  filter(Land != "Gesamt") %>% 
+  arrange(Jahr) %>% 
+  ungroup(Land) %>% 
+  select(Jahr,  Label, Postal, ratio)
 
+map_new_label <- paste0("AK elections results in ",i)
+
+map_new_name <- dw_create_chart(title=map_new_label,type='d3-maps-choropleth')
+
+dw_data_to_chart(tmp_map,chart_id = map_new_name$id)
+
+dw_edit_chart(map_new_name,
+                title=map_new_label,
+                axes = list(
+                keys = "Postal",
+                values = "Label"),
+                visualize = list(basemap = "austria-states",
+                               "map-key-attr"="Postal",
+                               tooltip = list(
+                                 body = "{{ ROUND(ratio) }}%",
+                                 title = "{{ postal }} | {{label}}"
+                               )),
+              source_name = "AK, author calculations",
+              source_url = 'https://vearlen.github.io/ak_wahl/',
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>',
+              )
+}
+png_chart <- dw_export_chart(map_new_name,type = 'png')
+magick::image_write(png_chart,path = paste0('maps/',map_new_label,'.png'))
 
