@@ -2,6 +2,7 @@
 
 -   [summary note](https://vearlen.github.io/ak_wahl/)\
 
--   Data in folder `/data`
+-   Data are in folder `/data`
 
-    Source of data: AK, Ilya Tishchenko. [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
+    Source of data: AK, Ilya Tishchenko. \
+    License: [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1)
