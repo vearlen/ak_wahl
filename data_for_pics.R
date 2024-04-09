@@ -214,10 +214,34 @@ tmp2 <-
   filter(year >=1989) %>% 
   select(-c(day,month)) 
 
+
+tmp3 <-
+  df_eu %>% 
+    select(`FPÖ EU` = FPOE_ratio,`SPÖ EU` = SPOE_ratio,`ÖVP EU` = OEVP_ratio,
+           `GRÜN EU` = GRUNE_ratio, `NEOS EU` = NEOS_ratio,  Wahl) %>%
+  separate(Wahl,into = c("day","month","year")) %>% 
+  mutate_if(is.numeric,~100*.) %>% 
+  mutate(year = as.integer(year)) %>% 
+  select(-c(day,month)) 
+    
 df_comp_1989 <- full_join(tmp1,tmp2) %>% arrange(year) %>% 
   mutate_if(is.numeric,round,0)
 
 df_comp_1989_fill <- fill_(df_comp_1989,names(df_comp_1989))
+
+df_comp_1996 <- full_join(tmp3,filter(tmp1,year>=1996)) %>% 
+  full_join(filter(tmp2,year>=1996)) %>% 
+  arrange(year) %>% 
+  mutate_if(is.numeric,round,0)
+
+df_comp_1996_fill <- fill_(df_comp_1996,names(df_comp_1996))
+
+# comparison chart with EU 1996 -------------------------------------------
+eu_chart <- dw_create_chart(title="Comparison of parties results from 1996",type='d3-lines')
+dw_data_to_chart(df_comp_1996_fill,eu_chart)
+dw_edit_chart(eu_chart,source_name = "AK, author calculations",
+              source_url = 'https://vearlen.github.io/ak_wahl/',
+              byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
 
 # create comparison chart from 1989 ---------------------------------------
 # dw_create_chart(title="Comparison of parties results from 1989",type='d3-lines')
