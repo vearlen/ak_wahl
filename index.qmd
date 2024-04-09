@@ -26,7 +26,7 @@ The [Chamber of Labour](https://en.wikipedia.org/wiki/Chamber_for_Workers_and_Em
 
 I've took and cleaned up [the data](https://www.arbeiterkammer.at/ueberuns/akwahl/AK_Wahlen_1949-2019.pdf "pdf") and build a few graphs to answer the questions that arise in my head. How in general is turnout? Below I compare it to the turnout of the parliament elections, the latter is quite impressive on it's own.
 
-As [Oberhuber et. al., 2014](https://www.ssoar.info/ssoar/handle/document/51973) mention this kind of *second order elections,* which don't allow direct influence on the government are in general has lower importance by parties, voters and therefore turnout is lower.
+As [Oberhuber et. al., 2014](https://www.ssoar.info/ssoar/handle/document/51973) mention this kind of *second order elections,* which don't allow direct influence on the government are in general has lower importance by parties, voters and therefore turnout is lower, actually it's lower than in EU parliament (data for Austria).
 
 ```{=html}
 <iframe title="Turnout" aria-label="Grouped Columns" id="datawrapper-chart-bYhOq" src="https://datawrapper.dwcdn.net/bYhOq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="575" data-external="1"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();

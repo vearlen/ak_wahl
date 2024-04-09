@@ -97,7 +97,6 @@ tmp1 <- df %>%
   
 tmp2 <- df %>% 
   filter(Label == "Wahlbeteiligung", Land == "Gesamt") %>% 
-  
   select(year=Jahr,AK = ratio)
 
 tmp3 <- df_nationalrat %>% 
@@ -107,9 +106,17 @@ tmp3 <- df_nationalrat %>%
   mutate(year = as.integer(year)) %>% 
   select(year,Parlament = abgegeben_ratio)
 
+tmp4 <- df_eu %>% 
+  select(Wahl,abgegeben_ratio) %>% 
+  mutate(abgegeben_ratio = round(abgegeben_ratio*100,2)) %>% 
+  separate(Wahl,into = c("day","month","year")) %>% 
+  mutate(year = as.integer(year)) %>% 
+  select(year,EU = abgegeben_ratio)
+
 df_turn <- tmp3 %>% 
   full_join(tmp2) %>% 
   full_join(tmp1) %>% 
+  full_join(tmp4) %>% 
   arrange(year) %>% 
   mutate(year_label = paste0('\'',str_sub(year,3)))#%>% 
   # fill(AK) %>% 
@@ -123,7 +130,7 @@ dw_test_key()
 dw_create_chart(title="Turnout no interpolation",type='d3-lines')
 
 # no interpolation
-dw_data_to_chart(select(df_turn,year_label,Parlament,AK,`Change in AK voters`),chart_id = 'bYhOq' ) 
+dw_data_to_chart(select(df_turn,year_label,Parlament,AK,`Change in AK voters`,EU),chart_id = 'bYhOq' ) 
 dw_edit_chart('bYhOq',source_name = "AK, author calculations",
               source_url = 'https://vearlen.github.io/ak_wahl/',
               byline = '<a href="https://www.linkedin.com/in/itishchenko/">Ilya Tishchenko</a>')
